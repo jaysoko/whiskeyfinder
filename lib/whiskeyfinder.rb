@@ -1,6 +1,5 @@
-require "whiskeyfinder/version"
+require_relative "./whiskeyfinder/version"
+require_relative "./whiskeyfinder/cli"
 
-module Whiskeyfinder
-  class Error < StandardError; end
-  # Your code goes here...
-end
+
+
