@@ -25,13 +25,13 @@ class WhiskeyFinder::CLI
         @list.flatten.map{ |w| puts "#{counter+=1}.\t#{w[:name]}\n\tDistiller: #{w[:distiller]}" }
         more_details_menu
       when "2"
-        puts "More Info on Japanese Whiskeys"
+        puts "More Information on Japanese Whiskeys"
         @index_url = @japanese_url
         @list = WhiskeyFinder::Whiskey.find_whiskeys(@index_url, @country="Japan")
         @list.flatten.map{ |w| puts "#{counter+=1}.\t#{w[:name]}\n\tDistiller: #{w[:distiller]}" }
         more_details_menu
       when "3"
-        puts "More Info on Irish Whiskeys"
+        puts "More Information on Irish Whiskeys"
         @index_url = @irish_url
         @list = WhiskeyFinder::Whiskey.find_whiskeys(@index_url, @country="Ireland")
         @list.flatten.map{ |w| puts "#{counter+=1}.\t#{w[:name]}\n\tDistiller: #{w[:distiller]}" }
@@ -43,11 +43,22 @@ class WhiskeyFinder::CLI
 
 def more_details_menu
   puts "Enter The Number Of The Whiskey For More Info:"
-  input = gets.strip
-  input = input.to_i
-   @choice = @list.flatten[input-=1][:name]
-   puts "You Chose #{@choice}"
+  input = gets.strip.to_i
+  @choice = @list.flatten[input-=1][:name]
+  puts "You Chose #{@choice}"
+  get_more_details(@choice)
 end
+
+def get_more_details(choice)
+  selection = @list.flatten.select{|x| x[:name]==@choice}
+  puts "You've Made A GREAT Selection!\n"
+  puts "#{selection.first[:name]} comes to us from #{selection.first[:distiller]}\n"
+  puts "#{selection.first[:name]} is #{selection.first[:alc_content]}\n"
+end
+
+
+
+
 
   def goodbye
     puts "Thank You For Playing"
