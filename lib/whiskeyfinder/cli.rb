@@ -55,8 +55,9 @@ class WhiskeyFinder::CLI
     puts "#{selection.first[:name]} comes to us from #{selection.first[:distiller]}\n"
     puts "#{selection.first[:name]} is #{selection.first[:alc_content]}\n"
     puts "#{selection.first[:name]} goes for a BARGAIN price of: #{selection.first[:price]}\n"
+    puts "#{selection.first[:text]}".strip
     puts "More Information can be obtained here: #{selection.first[:url]}\n"
-    puts "#{selection.first[:text]}"
+
   end
 
   def goodbye
