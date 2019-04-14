@@ -21,22 +21,20 @@ class WhiskeyFinder::CLI
       when "1"
         puts "More Information on American Whiskeys"
         @index_url = @american_url
-        @american_list = WhiskeyFinder::Whiskey.find_whiskeys(@index_url, @country="USA")
-        @american_list.flatten.map{ |w| puts "#{counter+=1}.\t#{w[:name]}\n\tDistiller: #{w[:distiller]}" }
-        puts "Enter The Number Of The Whiskey For More Info:"
-        input = gets.strip
+        @list = WhiskeyFinder::Whiskey.find_whiskeys(@index_url, @country="USA")
+        @list.flatten.map{ |w| puts "#{counter+=1}.\t#{w[:name]}\n\tDistiller: #{w[:distiller]}" }
+        more_details_menu
       when "2"
         puts "More Info on Japanese Whiskeys"
         @index_url = @japanese_url
-        @japanese_list = WhiskeyFinder::Whiskey.find_whiskeys(@index_url, @country="Japan")
-        @japanese_list.flatten.map{ |w| puts "#{counter+=1}.\t#{w[:name]}\n\tDistiller: #{w[:distiller]}" }
-        puts "Enter The Number Of The Whiskey For More Info:"
-        input = gets.strip
+        @list = WhiskeyFinder::Whiskey.find_whiskeys(@index_url, @country="Japan")
+        @list.flatten.map{ |w| puts "#{counter+=1}.\t#{w[:name]}\n\tDistiller: #{w[:distiller]}" }
+        more_details_menu
       when "3"
         puts "More Info on Irish Whiskeys"
         @index_url = @irish_url
-        @irish_list = WhiskeyFinder::Whiskey.find_whiskeys(@index_url, @country="Ireland")
-        @irish_list.flatten.map{ |w| puts "#{counter+=1}.\t#{w[:name]}\n\tDistiller: #{w[:distiller]}" }
+        @list = WhiskeyFinder::Whiskey.find_whiskeys(@index_url, @country="Ireland")
+        @list.flatten.map{ |w| puts "#{counter+=1}.\t#{w[:name]}\n\tDistiller: #{w[:distiller]}" }
         more_details_menu
       when "exit"
          goodbye
@@ -46,6 +44,9 @@ class WhiskeyFinder::CLI
 def more_details_menu
   puts "Enter The Number Of The Whiskey For More Info:"
   input = gets.strip
+  input = input.to_i
+   @choice = @list.flatten[input-=1][:name]
+   puts "You Chose #{@choice}"
 end
 
   def goodbye
