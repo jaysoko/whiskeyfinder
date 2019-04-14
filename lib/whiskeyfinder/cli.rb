@@ -23,8 +23,7 @@ class WhiskeyFinder::CLI
         @index_url = @american_url
         @american_list = WhiskeyFinder::Whiskey.find_whiskeys(@index_url, @country="USA")
         #@american_list.each {|w| puts "#{w[:name]}" }
-        @american_list.map { |w| w.values }
-        binding.pry
+        @american_list.flatten.map { |w| puts "#{w[:name]}" }
       when "2"
         puts "More Info on Japanese Whiskeys"
       when "3"
