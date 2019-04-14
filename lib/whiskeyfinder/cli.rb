@@ -41,24 +41,20 @@ class WhiskeyFinder::CLI
       end
   end
 
-def more_details_menu
-  puts "Enter The Number Of The Whiskey For More Info:"
-  input = gets.strip.to_i
-  @choice = @list.flatten[input-=1][:name]
-  puts "You Chose #{@choice}"
-  get_more_details(@choice)
-end
+  def more_details_menu
+    puts "Enter The Number Of The Whiskey For More Info:"
+    input = gets.strip.to_i
+    @choice = @list.flatten[input-=1][:name]
+    puts "You Chose #{@choice}"
+    get_more_details(@choice)
+  end
 
-def get_more_details(choice)
-  selection = @list.flatten.select{|x| x[:name]==@choice}
-  puts "You've Made A GREAT Selection!\n"
-  puts "#{selection.first[:name]} comes to us from #{selection.first[:distiller]}\n"
-  puts "#{selection.first[:name]} is #{selection.first[:alc_content]}\n"
-end
-
-
-
-
+  def get_more_details(choice)
+    selection = @list.flatten.select{|x| x[:name]==@choice}
+    puts "You've Made A GREAT Selection!\n"
+    puts "#{selection.first[:name]} comes to us from #{selection.first[:distiller]}\n"
+    puts "#{selection.first[:name]} is #{selection.first[:alc_content]}\n"
+  end
 
   def goodbye
     puts "Thank You For Playing"
