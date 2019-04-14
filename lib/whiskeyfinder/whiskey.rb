@@ -1,5 +1,5 @@
 class WhiskeyFinder::Whiskey
-attr_accessor :name, :price, :distiller, :country, :alc_content, :url
+attr_accessor :name, :price, :distiller, :country, :alc_content, :url, :text
 
 def self.find_whiskeys(index_url, country)
   #find whiskeys from a certain country
@@ -24,7 +24,8 @@ def self.scrape_whiskeys(index_url)
           alc_content: whiskey.css("div.product-box-wide-volume.gold").text,
           price: whiskey.css("div.product-box-wide-price.gold").text,
           distiller: whiskey.css("a.product-box-wide-distillery.gold").text,
-          country: @country }
+          country: @country,
+          text: whiskey.search("p").text }
       end
   whiskeys
   #Crib Notes
