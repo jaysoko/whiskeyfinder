@@ -22,19 +22,19 @@ class WhiskeyFinder::CLI
         puts "More Information on American Whiskeys"
         @index_url = @american_url
         @list = WhiskeyFinder::Whiskey.find_whiskeys(@index_url, @country="USA")
-        @list.flatten.map{ |w| puts "#{counter+=1}.\t#{w[:name]}\n\tDistiller: #{w[:distiller]}" }
+        @list.each {|w| puts "#{counter+=1}. #{w.name} By: #{w.distiller}"}
         more_details_menu
       when "2"
         puts "More Information on Japanese Whiskeys"
         @index_url = @japanese_url
         @list = WhiskeyFinder::Whiskey.find_whiskeys(@index_url, @country="Japan")
-        @list.flatten.map{ |w| puts "#{counter+=1}.\t#{w[:name]}\n\tDistiller: #{w[:distiller]}" }
+        @list.each {|w| puts "#{counter+=1}. #{w.name} By: #{w.distiller}"}
         more_details_menu
       when "3"
         puts "More Information on Irish Whiskeys"
         @index_url = @irish_url
         @list = WhiskeyFinder::Whiskey.find_whiskeys(@index_url, @country="Ireland")
-        @list.flatten.map{ |w| puts "#{counter+=1}.\t#{w[:name]}\n\tDistiller: #{w[:distiller]}" }
+        @list.each {|w| puts "#{counter+=1}. #{w.name} By: #{w.distiller}"}
         more_details_menu
       when "exit"
          goodbye

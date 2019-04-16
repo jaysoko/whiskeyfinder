@@ -1,5 +1,21 @@
 class WhiskeyFinder::Whiskey
 attr_accessor :name, :price, :distiller, :country, :alc_content, :url, :text
+@@all = []
+
+def initialize(name, price=nil, distiller=nil, country=nil, alc_content=nil, url=nil, text=nil)
+  @name = name
+  @price = price
+  @distiller = distiller
+  @country = country
+  @alc_content = alc_content
+  @url = url
+  @text = text
+  @@all << self
+end
+
+def self.all
+  @@all
+end
 
 def self.find_whiskeys(index_url, country)
   #find whiskeys from a certain country
@@ -7,7 +23,7 @@ def self.find_whiskeys(index_url, country)
   @country = country
   whiskeys = []
   whiskeys << scrape_whiskeys(@index_url)
-  whiskeys
+  whiskeys.flatten.collect {|w,v| self.new(w[:name],price=w[:price],distiller=w[:distiller],@country=country,alc_content=w[:alc_content],url=w[:url],text=w[:text]) }
 end
 
 def self.scrape_whiskeys(index_url)
