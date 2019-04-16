@@ -44,19 +44,19 @@ class WhiskeyFinder::CLI
   def more_details_menu
     puts "Enter The Number Of The Whiskey For More Info:"
     input = gets.strip.to_i
-    @choice = @list.flatten[input-=1][:name]
-    puts "You Chose #{@choice}"
-    get_more_details(@choice)
+    @choice = @list[input-=1]
+    puts "You Chose #{@choice.name}"
+    get_more_details(@choice.name)
   end
 
   def get_more_details(choice)
-    selection = @list.flatten.select{|x| x[:name]==@choice}
+    selection = @list.select {|x| x.name == @choice.name}
     puts "You've Made A GREAT Selection!\n"
-    puts "#{selection.first[:name]} comes to us from #{selection.first[:distiller]}\n"
-    puts "#{selection.first[:name]} is #{selection.first[:alc_content]}\n"
-    puts "#{selection.first[:name]} goes for a BARGAIN price of: #{selection.first[:price]}\n"
-    puts "#{selection.first[:text]}".strip
-    puts "More Information can be obtained here: #{selection.first[:url]}\n"
+    puts "#{selection.first.name} comes to us from #{selection.first.distiller}\n"
+    puts "#{selection.first.name} has an ABV of #{selection.first.alc_content}\n"
+    puts "#{selection.first.price} goes for a BARGAIN price of: #{selection.first.price}\n"
+    puts "#{selection.first.text}".strip
+    puts "More Information can be obtained here: #{selection.first.url}\n"
 
   end
 
