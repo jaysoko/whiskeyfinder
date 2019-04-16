@@ -19,18 +19,21 @@ class WhiskeyFinder::CLI
     counter = 0
     case input
       when "1"
+        system "clear"
         puts "More Information on American Whiskeys"
         @index_url = @american_url
         @list = WhiskeyFinder::Whiskey.find_whiskeys(@index_url, @country="USA")
         @list.each {|w| puts "#{counter+=1}. #{w.name} By: #{w.distiller}"}
         more_details_menu
       when "2"
+        system "clear"
         puts "More Information on Japanese Whiskeys"
         @index_url = @japanese_url
         @list = WhiskeyFinder::Whiskey.find_whiskeys(@index_url, @country="Japan")
         @list.each {|w| puts "#{counter+=1}. #{w.name} By: #{w.distiller}"}
         more_details_menu
       when "3"
+        system "clear"
         puts "More Information on Irish Whiskeys"
         @index_url = @irish_url
         @list = WhiskeyFinder::Whiskey.find_whiskeys(@index_url, @country="Ireland")
@@ -50,6 +53,7 @@ class WhiskeyFinder::CLI
 
   def get_more_details(choice)
     selection = @list.select {|x| x.name == @choice.name}
+    system "clear"
     puts "You've Made A GREAT Selection!\n"
     puts "You Chose #{@choice.name}"
     puts "#{selection.first.name} comes to us from #{selection.first.distiller}\n"
@@ -66,14 +70,16 @@ class WhiskeyFinder::CLI
     puts "2. No, Thank You\n"
     input = gets.to_i
     if input == 1
+      system "clear"
       call
     else
+      system "clear"
       goodbye
     end
   end
 
   def goodbye
-    puts "Thank You For Playing"
+    puts "Thank You For Playing WhiskeyFinder!"
   end
 
   def country_urls
