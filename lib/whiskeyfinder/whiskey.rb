@@ -30,7 +30,6 @@ def self.scrape_whiskeys(index_url)
   #Go to MasterofMalt
   @index_url = index_url
   whiskeys = []
-  #doc = Nokogiri::HTML(open("https://www.masterofmalt.com/country/american-whiskey/"))
   doc = Nokogiri::HTML(open(@index_url))
   products = doc.css('div.boxBgr.product-box-wide.h-gutter.js-product-box-wide')
       products.each do |whiskey|
@@ -49,5 +48,5 @@ def self.scrape_whiskeys(index_url)
   #distiller = doc.css("a.product-box-wide-distillery.gold").text
   #price = doc.css("div.product-box-wide-price.gold").text
   #alcohol_content = doc.css("div.product-box-wide-volume.gold").text
-end
+  end
 end

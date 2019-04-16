@@ -45,19 +45,31 @@ class WhiskeyFinder::CLI
     puts "Enter The Number Of The Whiskey For More Info:"
     input = gets.strip.to_i
     @choice = @list[input-=1]
-    puts "You Chose #{@choice.name}"
     get_more_details(@choice.name)
   end
 
   def get_more_details(choice)
     selection = @list.select {|x| x.name == @choice.name}
     puts "You've Made A GREAT Selection!\n"
+    puts "You Chose #{@choice.name}"
     puts "#{selection.first.name} comes to us from #{selection.first.distiller}\n"
     puts "#{selection.first.name} has an ABV of #{selection.first.alc_content}\n"
     puts "#{selection.first.name} goes for a BARGAIN price of: #{selection.first.price}\n"
     puts "#{selection.first.text}".strip
     puts "More Information can be obtained here: #{selection.first.url}\n"
+    stay_or_go
+  end
 
+  def stay_or_go
+    puts "Would You Like To Play Again?\n"
+    puts "1. Yes\n"
+    puts "2. No, Thank You\n"
+    input = gets.to_i
+    if input == 1
+      call
+    else
+      goodbye
+    end
   end
 
   def goodbye
