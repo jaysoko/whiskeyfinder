@@ -16,40 +16,51 @@ class WhiskeyFinder::CLI
   def menu
     puts "Enter The Number Of The Country You Wish To Research:"
     input = gets.strip
-    counter = 0
     case input
       when "1"
         system "clear"
         puts "More Information on American Whiskeys"
         @index_url = @american_url
         @list = WhiskeyFinder::Whiskey.find_whiskeys(@index_url, @country="USA")
-        @list.each {|w| puts "#{counter+=1}. #{w.name} By: #{w.distiller}"}
+        print_list
         more_details_menu
       when "2"
         system "clear"
         puts "More Information on Japanese Whiskeys"
         @index_url = @japanese_url
         @list = WhiskeyFinder::Whiskey.find_whiskeys(@index_url, @country="Japan")
-        @list.each {|w| puts "#{counter+=1}. #{w.name} By: #{w.distiller}"}
+        print_list
         more_details_menu
       when "3"
         system "clear"
         puts "More Information on Irish Whiskeys"
         @index_url = @irish_url
         @list = WhiskeyFinder::Whiskey.find_whiskeys(@index_url, @country="Ireland")
-        @list.each {|w| puts "#{counter+=1}. #{w.name} By: #{w.distiller}"}
+        print_list
         more_details_menu
       when "exit"
          goodbye
+      else
+        call
       end
+  end
+
+  def print_list
+    counter = 0
+    @list.each {|w| puts "#{counter+=1}. #{w.name} By: #{w.distiller}"}
   end
 
   def more_details_menu
     puts "Enter The Number Of The Whiskey For More Info:"
     input = gets.strip.to_i
     @choice = @list[input-=1]
-    get_more_details(@choice.name)
+    if input < @list.size
+      get_more_details(@choice.name)
+    else
+      print_list
+      more_details_menu
   end
+end
 
   def get_more_details(choice)
     selection = @list.select {|x| x.name == @choice.name}
