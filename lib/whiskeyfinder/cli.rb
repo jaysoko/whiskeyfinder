@@ -66,17 +66,22 @@ class WhiskeyFinder::CLI
 
   def stay_or_go
     puts "Would You Like To Play Again?\n"
-    puts "1. Yes\n"
-    puts "2. No, Thank You\n"
-    input = gets.to_i
-    if input == 1
-      system "clear"
-      call
-    else
+    puts "Type 'yes' to continue or 'exit' to leave\n"
+    input = gets
+    case input.strip.to_s
+    when "yes"
+        system "clear"
+        list_country_options
+        menu
+    when "exit"
       system "clear"
       goodbye
-    end
-  end
+    else
+      system "clear"
+      stay_or_go
+      end
+
+end
 
   def goodbye
     puts "Thank You For Playing WhiskeyFinder!"

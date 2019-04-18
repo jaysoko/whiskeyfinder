@@ -8,8 +8,8 @@ class WhiskeyFinder::Scraper
 
   def make_whiskey
   @whiskeys = []
-  @doc = Nokogiri::HTML(open(@index_url))
-  @products = @doc.css('div.boxBgr.product-box-wide.h-gutter.js-product-box-wide')
+  @products = Nokogiri::HTML(open(@index_url)).css('div.boxBgr.product-box-wide.h-gutter.js-product-box-wide')
+  #@products = @doc.css('div.boxBgr.product-box-wide.h-gutter.js-product-box-wide')
   @products.each do |w|
     whiskey = WhiskeyFinder::Whiskey.new(w.search("h3 a").text)
     whiskey.distiller=w.css("a.product-box-wide-distillery.gold").text
