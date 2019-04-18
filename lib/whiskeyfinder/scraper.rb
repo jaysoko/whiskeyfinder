@@ -24,13 +24,4 @@ class WhiskeyFinder::Scraper
   end
 
 end
-  #products = doc.css('div.boxBgr.product-box-wide.h-gutter.js-product-box-wide')
-  #    products.each do |whiskey|
-  #      whiskeys << {
-  #        name: whiskey.search("h3 a").text,
-  #        url: whiskey.search("h3 a").attr('href').value,
-  #        alc_content: whiskey.css("div.product-box-wide-volume.gold").text,
-  #        price: whiskey.css("div.product-box-wide-price.gold").text,
-  #        distiller: whiskey.css("a.product-box-wide-distillery.gold").text,
-  #        country: @country,
-  #        text: whiskey.search("p").text }
+  
