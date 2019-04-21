@@ -10,7 +10,7 @@ class WhiskeyFinder::CLI
 
   def list_country_options
     puts "International Whiskey Finder"
-    puts "1. USA\n2. Japan\n3. Ireland\n4. Type 'exit' to leave"
+    puts "1. USA\n2. Japan\n3. Ireland\nType 'exit' to leave"
   end
 
   def menu
